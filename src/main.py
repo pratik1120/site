@@ -162,26 +162,33 @@ def pin(title):
 
 @app.route("/images/<path:image_path>")
 def proxy_image(image_path):
-    headers = {
-        "Authorization": f"token {app.config['GITHUB_TOKEN']}",
-        "Accept": "application/vnd.github.v3.raw"
-    }
+    try:
+        headers = {
+            "Authorization": f"token {app.config['GITHUB_TOKEN']}",
+            "Accept": "application/vnd.github.v3.raw"
+        }
 
-    url = app.config['GITHUB_API_URL'].format(
-        owner=app.config['GITHUB_USERNAME'],
-        repo=app.config['GITHUB_REPO'],
-        path=image_path,
-        branch=app.config['GITHUB_REPO_BRANCH']
-    )
+        url = app.config['GITHUB_API_URL'].format(
+            owner=app.config['GITHUB_USERNAME'],
+            repo=app.config['GITHUB_REPO'],
+            path=image_path,
+            branch=app.config['GITHUB_REPO_BRANCH']
+        )
 
-    r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers)
 
-    if r.status_code != 200:
-        abort(r.status_code)
+        if r.status_code != 200:
+            abort(r.status_code)
 
-    content_type, _ = mimetypes.guess_type(image_path)
-    return Response(r.content, content_type or "image/png")
+        content_type, _ = mimetypes.guess_type(image_path)
+        return Response(r.content, content_type or "image/png")
+    except Exception as e:
+        return redirect(f"/out?c={e}")
 
+
+@app.route("/out")
+def out():
+    return f"{request.args.get('c')}"
 
 # -------- POST PAGE (TITLE BASED) -------- #
 

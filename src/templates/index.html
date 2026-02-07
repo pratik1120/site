@@ -79,7 +79,7 @@
     <div class="thumb-post"
     data-filename="{{ item.name }}"
     onclick="location.href='/post/{{ item.title|urlencode }}'">
-        <img src="{{ url_for('proxy_image', image=item.path) }}">
+        <img src="{{ url_for('proxy_image', image=item.name) }}">
         <div class="thumb-overlay">
             <b>{{ item.title }}</b>
         </div>

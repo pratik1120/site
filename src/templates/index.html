@@ -83,11 +83,10 @@
         <div class="thumb-overlay">
         {% if session.get('logged_in') %}
         <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
-        <br>
-        <b>{{ item.title }}</b>
-        <br>
+        &nbsp;
+        {% if item.pin %}📌{% endif %}<b>{{ item.title }}</b>
+        &nbsp;
         <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
-            {% if item.pin %}[unpin]{% else %}[pin]{% endif %}
         </a>
         {%else%}
         <b>{{ item.title }}</b>

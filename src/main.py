@@ -176,13 +176,15 @@ def proxy_image(image_path):
     
     url = f"https://raw.githubusercontent.com/{app.config['GITHUB_USERNAME']}/{app.config['GITHUB_REPO']}/{app.config['GITHUB_REPO_BRANCH']}/{image_path}"
 
-    r = requests.get(url, headers=headers)
+    return requests.get(url, headers=headers)
 
-    if r.status_code != 200:
-        abort(r.status_code)
+    # r = requests.get(url, headers=headers)
 
-    content_type, _ = mimetypes.guess_type(image_path)
-    return Response(r.content, content_type or "image/png")
+    # if r.status_code != 200:
+    #     abort(r.status_code)
+
+    # content_type, _ = mimetypes.guess_type(image_path)
+    # return Response(r.content, content_type or "image/png")
 
 
 # -------- POST PAGE (TITLE BASED) -------- #

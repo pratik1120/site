@@ -361,3 +361,72 @@ nav ul li a:hover {
     margin: 4px 0;
   }
 }
+
+
+/* =========================
+   Featured + Thumbnails
+   ========================= */
+
+.featured {
+    margin-top: 30px;
+}
+
+/* Row for small posts */
+
+.thumb-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+/* Individual thumbnail */
+
+.thumb-post {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    border: 1px solid #333;
+    cursor: pointer;
+    background: #000;
+}
+
+.thumb-post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hover glass */
+
+.thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    color: #ddd;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.3;
+    opacity: 0;
+    transition: .25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.thumb-post:hover .thumb-overlay {
+    opacity: 1;
+}
+
+/* Mobile */
+
+@media (max-width:600px){
+    .thumb-post{
+        width:120px;
+        height:120px;
+    }
+}

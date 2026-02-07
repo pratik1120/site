@@ -17,44 +17,56 @@
 </div>
 
 <div id="all-items">
-    {% for item in uploads %}
-    <div class="term" onclick="location.href='/post/{{ item.name }}'" style="cursor:pointer" id="{{ item.display_datetime[1] }}">
-        {% if item.pin %}
-        <span class="pin-icon" title="Pinned"><img style="height:2em" src="/static/images/pin.gif"></span>
-        {% endif %}
+
+{% for item in uploads %}
+
+    {% if loop.first %}
+
+    <!-- FEATURED POST -->
+
+    <div class="term featured"
+         onclick="location.href='/post/{{ item.name }}'"
+         style="cursor:pointer"
+         id="{{ item.display_datetime[1] }}">
+
         <div class="meta">
             <span class="user">{{ user }}</span> |
-            <span class="display-datetime" data-timestamp="{{ item.display_datetime[1] }}">{{ item.display_datetime[0] }}</span> |
-            <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
-            <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
+            {{ item.display_datetime[0] }}
         </div>
-        <span>
-            file:
-            <a class="url" href="{{url_for('proxy_image', image_path=item.path) }}" target="_blank">
-                {{ item.name }}
-            </a>
-            {% if session.get('logged_in') %}
-            &nbsp;
-            <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
-            &nbsp;
-            <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
-            &nbsp;
-            <a href="#" class="pin-link" data-filename="{{ item.name }}">{% if item.pin %}[unpin]{% else %}[pin]{% endif %}</a>
-            {% endif %}
-        </span>
+
         <div class="media">
-            <a href="{{ url_for('proxy_image', image_path=item.path) }}">
-                <img src="{{ url_for('proxy_image', image_path=item.path) }}" alt="{{ item.name }}">
-            </a>
+            <img src="{{ url_for('proxy_image', image_path=item.path) }}">
         </div>
-        {% if item.description %}
-        <pre class="description" style="white-space: pre-line;">{{ item.description|striptags|truncate(300, True, '...') }}</pre>
-        <!-- <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre> -->
-        <!-- <p style="white-space: pre-line;">{{ item.description|safe }}</p> -->
-        {% endif %}
+
+        <pre class="description">
+{{ item.description|striptags|truncate(300, True, '...') }}
+        </pre>
+
     </div>
-    {% endfor %}
+
+    <div class="thumb-row">
+
+    {% else %}
+
+    <!-- THUMB POSTS -->
+
+    <div class="thumb-post"
+         onclick="location.href='/post/{{ item.name }}'">
+
+        <img src="{{ url_for('proxy_image', image_path=item.path) }}">
+
+        <div class="thumb-overlay">
+            {{ item.description|striptags|truncate(100, True, '...') }}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
 </div>
+
 <!-- Edit Description + Date Modal -->
 <div id="editModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
     background:#000000a1; justify-content:center; align-items:center; z-index:9999;">

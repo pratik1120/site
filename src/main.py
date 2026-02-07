@@ -175,8 +175,8 @@ def proxy_image(image):
     # )
     
     url = f"https://raw.githubusercontent.com/{app.config['GITHUB_USERNAME']}/{app.config['GITHUB_REPO']}/{app.config['GITHUB_REPO_BRANCH']}/uploads/{image}"
-    return url
-    # return requests.get(url, headers={})
+    
+    return requests.get(url, headers={})
 
     # r = requests.get(url, headers=headers)
 

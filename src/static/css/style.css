@@ -1,5 +1,5 @@
 :root {
-    --bg-img: url('/static/images/bg.jpeg');
+    --bg-img: url('/static/images/bg.jpg');
 
     /* Cyberpunk palette */
     --neon-pink: #ff2fdc;
@@ -173,3 +173,4 @@ nav ul li a:hover {
     margin: 4px 0;
   }
 }
+

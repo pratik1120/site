@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Post{% endblock %}
+
+{% block body %}
+<div id="all-items">
+
+    <div class="term" id="{{ item.display_datetime[1] }}">
+        {% if item.pin %}
+        <span class="pin-icon">
+            <img style="height:2em" src="/static/images/pin.gif">
+        </span>
+        {% endif %}
+
+        <div class="meta">
+            <span class="user">{{ user }}</span> |
+            <span class="display-datetime">{{ item.display_datetime[0] }}</span> |
+            <a class="url" href="/">[back]</a>
+        </div>
+
+        <span>
+            file:
+            <a class="url" href="{{ url_for('proxy_image', image_path=item.path) }}" target="_blank">
+                {{ item.name }}
+            </a>
+
+            {% if session.get('logged_in') %}
+            &nbsp;
+            <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
+            &nbsp;
+            <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
+            {% endif %}
+        </span>
+
+        <div class="media">
+            <a href="{{ url_for('proxy_image', image_path=item.path) }}">
+                <img src="{{ url_for('proxy_image', image_path=item.path) }}">
+            </a>
+        </div>
+
+        {% if item.description %}
+        <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

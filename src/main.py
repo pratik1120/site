@@ -198,3 +198,15 @@ def logout():
     flash("Logged out.", category='error')
     return redirect(url_for('index'))
 
+@app.route("/post/<filename>")
+def post(filename):
+    data = utils.get_data()
+
+    for item in data:
+        if item["name"] == filename:
+            return render_template(
+                "post.html",
+                item=item,
+                user=app.config['DISPLAY_NAME']
+            )
+    abort(404)

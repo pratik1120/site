@@ -1,363 +1,103 @@
-/* =========================
-   4chan.css
-   ========================= */
-
-:root{
-    --width:650px; /* width of the container thats contains the image and text */
-    --img:43%; /* 33% gives a 4chan look, but 43-50 show the image nicely */
-}
-
-.term:target {
-    border-color: #eeeeee!important;
-}
-
-.term {
-    position: relative;
-    font-size: 16px!important;
-    background-color: #000000c5;
-    color: #b3b8c3;
-    width: 90%;
-    max-width: var(--width);
-    border: solid 2px #1f1f1f;
-    margin: 5px auto;
-    padding: 3px;
-    display: table;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.user {
-    color: #5e6dc4;
-    font-weight: bold;
-}
-
-.media img {
-    width: 100%;
-    max-width: var(--img);
-    padding: 2px 4px 2px 2px;
-    float: left;
-    box-sizing: border-box;
-}
-
-.term:hover {
-    border: solid 2px #252525;
-}
-
-a {
-    text-decoration: none;
-}
-
-.reply {
-    text-decoration: underline;
-    color: #b17ebd !important;
-}
-
-.reply:hover {
-    background-color: #b17ebd!important;
-    color: #0C090A!important;
-}
-
-.url {
-    text-decoration: underline;
-    color: #b3b8c3!important;
-}
-
-.url:hover {
-    background-color: #b3b8c3!important;
-    color: #0C090A!important;
-}
-
-.greentext {
-    color: #7bbd67!important;
-}
-
-.redtext {
-    color: #c94545!important;
-}
-
-.meta {
-    font-size:80%;
-}
-
-.delete-link {
-    color: #ff2727;
-    font-size: 70%;
-}
-
-.delete-link:hover {
-    background-color: #ff2727;
-    color:#eee;
-    text-decoration: underline;
-}
-
-.edit-link {
-    color: #36a0ff;
-    font-size: 70%;
-}
-
-.edit-link:hover {
-    background-color: #36a0ff;
-    color:#eee;
-    text-decoration: underline;
-}
-
-.pin-link {
-    color: #5eff36;
-    font-size: 70%;
-}
-
-.pin-link:hover {
-    background-color: #4eff36;
-    color:#0f0f0f;
-    text-decoration: underline;
-}
-
-.processing-status {
-    display:none;
-    color:#b6b6b6;
-    font-weight:bold;
-    text-align:center;
-    width:100%;
-}
-
-.pin-icon {
-    position: absolute;
-    top: -5px;
-    right: -15px;
-    font-size: 18px;
-    color: #727272;
-    cursor: default;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 600px) {
-    .media img {
-        width: 33%;
-        float: left;
-        margin-bottom: 4px;
-    }
-    nav ul li {
-        display: block;
-        margin: 4px 0;
-    }
-    .term {
-        width: 95%;
-    }
-}
-
-
-/* =========================
-   newform.css
-   ========================= */
-
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-input[type="file"],
-input[type="date"],
-textarea {
-  width: 95%;
-  margin-top: 5px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-#previewContainer {
-  margin-top: 20px;
-  text-align: center;
-}
-
-#previewContainer img {
-  max-width: 95%;
-  border-radius: 10px;
-  padding:8px
-}
-
-.hidden {
-  display: none;
-}
-
-
-/* =========================
-   style.css
-   ========================= */
-
 :root {
-    --bg-img: url('/static/images/bg.jpg');
-
-    /* Cyberpunk palette */
-    --neon-pink: #ff2fdc;
-    --neon-cyan: #00fff0;
-    --neon-purple: #7f5cff;
-    --neon-yellow: #ffe44d;
-    --dark-core: #050508;
-    --glass: rgba(5, 5, 15, 0.75);
+  --bg: #050508;
+  --shelf-wood: #2b1b12;
+  --shelf-shadow: rgba(0,0,0,0.6);
+  --book-width: 160px;
+  --book-height: 240px;
 }
 
 html {
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255,47,220,0.15), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(0,255,240,0.12), transparent 45%),
-        var(--bg-img);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: #e6e6eb;
-    font-family: math;
-    image-rendering: optimizeQuality;
-    text-shadow: 0 0 6px rgba(0,255,240,0.15);
+  background: var(--bg);
+  color: #e6e6eb;
+  font-family: math;
 }
 
-button {
-  margin-top: 10px;
-  width: 50%;
-  padding: 10px;
-  background: linear-gradient(135deg, transparent, rgba(255,47,220,0.15));
-  color: var(--neon-cyan);
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.25s;
-  text-align: center;
-  float: left;
-  border: 1px solid var(--neon-cyan);
+/* =========================
+   BOOKSHELF CONTAINER
+   ========================= */
+
+.bookshelf {
+  display: flex;
+  gap: 18px;
+  padding: 40px;
+  align-items: flex-end;
+
+  /* the shelf itself */
+  border-bottom: 10px solid var(--shelf-wood);
   box-shadow:
-    0 0 6px rgba(0,255,240,0.4),
-    inset 0 0 10px rgba(0,255,240,0.15);
+    inset 0 -4px 6px rgba(255,255,255,0.05),
+    0 12px 20px var(--shelf-shadow);
 }
 
-button:hover {
-  background: var(--neon-cyan);
-  color: #050508;
-  box-shadow:
-    0 0 14px rgba(0,255,240,0.9),
-    0 0 40px rgba(0,255,240,0.4);
-}
+/* =========================
+   BOOK (POST)
+   ========================= */
 
-a {
-  color: var(--neon-yellow);
-  text-shadow: 0 0 6px rgba(255,228,77,0.6);
-}
-
-.flash-wrap {
-  position: fixed;
-  bottom: 66px;
-  right: 40px;
-  z-index: 60;
-}
-
-.flash {
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: var(--glass);
-  margin-bottom: 6px;
-  opacity: 0;
-  transform: translateX(100%);
-  animation: slideIn .4s forwards, fadeOut .4s 5s forwards;
-  cursor: pointer;
-  border: 1px dashed var(--neon-purple);
-  box-shadow:
-    0 0 12px rgba(127,92,255,0.6),
-    inset 0 0 12px rgba(255,47,220,0.15);
-}
-
-.error {
-  color: #ff3b3b;
-  text-shadow: 0 0 10px rgba(255,59,59,0.8);
-}
-
-.success {
-  color: #00ff88;
-  text-shadow: 0 0 10px rgba(0,255,136,0.8);
-}
-
-@keyframes slideIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 4px 0;
-  font-size: 14px;
-  background: linear-gradient(
-    90deg,
-    rgba(255,47,220,0.15),
-    rgba(0,255,240,0.15)
-  );
-  border-top: 1px solid var(--neon-cyan);
-  box-shadow:
-    0 -2px 20px rgba(0,255,240,0.4);
-  backdrop-filter: blur(6px);
-}
-
-footer a {
-  color: var(--neon-cyan);
-}
-
-footer a:hover {
-  text-decoration: underline;
-  color: var(--neon-pink);
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(255,47,220,0.9);
-}
-
-nav {
-  text-align: center;
-  padding: 8px;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin: 0 8px;
-}
-
-nav ul li a {
-  color: #9aa0ff;
+.book {
+  display: block;
+  width: var(--book-width);
+  height: var(--book-height);
+  position: relative;
   text-decoration: none;
-  letter-spacing: 1px;
-  text-shadow: 0 0 6px rgba(127,92,255,0.6);
+
+  background: #000;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.7),
+    inset -2px 0 4px rgba(255,255,255,0.08);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
-  color: var(--neon-cyan);
-  text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(0,255,240,0.9);
+.book img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.center {
-  text-align: center;
+/* =========================
+   HOVER = PULL BOOK OUT
+   ========================= */
+
+.book:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow:
+    0 20px 35px rgba(0,0,0,0.9),
+    0 0 18px rgba(0,255,240,0.4);
+  z-index: 5;
 }
 
-/* Mobile-specific adjustments */
+/* =========================
+   OPTIONAL: BOOK SPINE EFFECT
+   ========================= */
+
+.book::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.8),
+    rgba(255,255,255,0.15)
+  );
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
 @media (max-width: 600px) {
-  nav ul li {
-    display: block;
-    margin: 4px 0;
+  .bookshelf {
+    gap: 12px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .book {
+    width: 120px;
+    height: 180px;
   }
 }

@@ -20,33 +20,58 @@
 
 {% for item in uploads %}
 
-    {% if loop.first %}
+{% if loop.first %}
 
-    <!-- FEATURED POST -->
+<div class="term featured"
+     onclick="location.href='/post/{{ item.name }}'"
+     style="cursor:pointer"
+     id="{{ item.display_datetime[1] }}">
 
-    <div class="term featured"
-         onclick="location.href='/post/{{ item.name }}'"
-         style="cursor:pointer"
-         id="{{ item.display_datetime[1] }}">
+    {% if item.pin %}
+    <span class="pin-icon">
+        <img style="height:2em" src="/static/images/pin.gif">
+    </span>
+    {% endif %}
 
-        <div class="meta">
-            <span class="user">{{ user }}</span> |
-            {{ item.display_datetime[0] }}
-        </div>
-
-        <div class="media">
-            <img src="{{ url_for('proxy_image', image_path=item.path) }}">
-        </div>
-
-        <pre class="description">
-{{ item.description|striptags|truncate(300, True, '...') }}
-        </pre>
-
+    <div class="meta">
+        <span class="user">{{ user }}</span> |
+        <span class="display-datetime">{{ item.display_datetime[0] }}</span> |
+        <span class="ago" data-timestamp="{{ item.display_datetime[1] }}"></span> |
+        <a class="url" href="#{{ item.display_datetime[1] }}">#{{ item.display_datetime[1] }}</a>
     </div>
 
-    <div class="thumb-row">
+    <span>
+        file:
+        <a class="url" href="{{ url_for('proxy_image', image_path=item.path) }}" target="_blank">
+            {{ item.name }}
+        </a>
 
-    {% else %}
+        {% if session.get('logged_in') %}
+        &nbsp;
+        <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
+        &nbsp;
+        <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
+        &nbsp;
+        <a href="#" class="pin-link" data-filename="{{ item.name }}">
+            {% if item.pin %}[unpin]{% else %}[pin]{% endif %}
+        </a>
+        {% endif %}
+    </span>
+
+    <div class="media">
+        <img src="{{ url_for('proxy_image', image_path=item.path) }}">
+    </div>
+
+    <pre class="description">
+{{ item.description|striptags|truncate(300, True, '...') }}
+    </pre>
+
+</div>
+
+<div class="thumb-row">
+
+{% else %}
+
 
     <!-- THUMB POSTS -->
 

@@ -62,8 +62,8 @@
         <img src="{{ url_for('proxy_image', image_path=item.path) }}">
     </div>
 
-    <pre class="description">
-{{ item.description|striptags|truncate(300, True, '...') }}
+    <pre style="white-space: pre-wrap;" class="description">
+{{ item.description|striptags|truncate(250, True, '...') }}
     </pre>
 
 </div>

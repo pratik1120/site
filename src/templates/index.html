@@ -81,7 +81,17 @@
     onclick="location.href='/post/{{ item.title|urlencode }}'">
         <img src="{{ item.url }}">
         <div class="thumb-overlay">
-            <b>{{ item.title }}</b>
+        {% if session.get('logged_in') %}
+        <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
+        <br>
+        <b>{{ item.title }}</b>
+        <br>
+        <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
+            {% if item.pin %}[unpin]{% else %}[pin]{% endif %}
+        </a>
+        {%else%}
+        <b>{{ item.title }}</b>
+        {% endif %}
         </div>
 
     </div>

@@ -1,88 +1,59 @@
-:root {
-  --bg: #050508;
-  --shelf-wood: #2b1b12;
-  --shelf-shadow: rgba(0,0,0,0.6);
-  --book-width: 160px;
-  --book-height: 240px;
-}
-
-html {
-  background: var(--bg);
-  color: #e6e6eb;
-  font-family: math;
-}
-
 /* =========================
-   BOOKSHELF CONTAINER
+   BOOKSHELF INDEX
    ========================= */
 
-.bookshelf {
+#all-items {
   display: flex;
-  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
   padding: 40px;
-  align-items: flex-end;
-
-  /* the shelf itself */
-  border-bottom: 10px solid var(--shelf-wood);
-  box-shadow:
-    inset 0 -4px 6px rgba(255,255,255,0.05),
-    0 12px 20px var(--shelf-shadow);
 }
 
-/* =========================
-   BOOK (POST)
-   ========================= */
-
-.book {
-  display: block;
-  width: var(--book-width);
-  height: var(--book-height);
-  position: relative;
-  text-decoration: none;
-
-  background: #000;
-  box-shadow:
-    0 10px 20px rgba(0,0,0,0.7),
-    inset -2px 0 4px rgba(255,255,255,0.08);
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+/* each post = one book */
+#all-items .term {
+  width: 280px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
 }
 
-.book img {
-  width: 100%;
-  height: 100%;
+/* hide all forum junk on index */
+#all-items .meta,
+#all-items .description,
+#all-items .pin-icon,
+#all-items span,
+#all-items pre {
+  display: none;
+}
+
+/* image IS the post */
+#all-items .media {
+  float: none;
+}
+
+#all-items .media img {
+  width: 280px;
+  height: 218px;
   object-fit: cover;
   display: block;
-}
 
-/* =========================
-   HOVER = PULL BOOK OUT
-   ========================= */
-
-.book:hover {
-  transform: translateY(-12px) scale(1.03);
+  border: 2px solid #9400D3;
   box-shadow:
-    0 20px 35px rgba(0,0,0,0.9),
-    0 0 18px rgba(0,255,240,0.4);
-  z-index: 5;
+    0 0 12px rgba(148,0,211,0.6),
+    inset 0 0 8px rgba(255,255,255,0.15);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* =========================
-   OPTIONAL: BOOK SPINE EFFECT
-   ========================= */
-
-.book::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.8),
-    rgba(255,255,255,0.15)
-  );
+/* hover = early-web glow */
+#all-items .media img:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 18px rgba(255,77,166,0.9),
+    0 0 30px rgba(148,0,211,0.8);
 }
 
 /* =========================
@@ -90,14 +61,13 @@ html {
    ========================= */
 
 @media (max-width: 600px) {
-  .bookshelf {
-    gap: 12px;
+  #all-items {
+    gap: 16px;
     padding: 20px;
-    overflow-x: auto;
   }
 
-  .book {
-    width: 120px;
-    height: 180px;
+  #all-items .media img {
+    width: 200px;
+    height: auto;
   }
 }

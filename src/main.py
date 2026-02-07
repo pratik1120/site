@@ -201,7 +201,6 @@ def logout():
 @app.route("/post/<filename>")
 def post(filename):
     data = utils.get_data()
-
     for item in data:
         if item["name"] == filename:
             return render_template(
@@ -210,3 +209,4 @@ def post(filename):
                 user=app.config['DISPLAY_NAME']
             )
     abort(404)
+

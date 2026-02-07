@@ -18,7 +18,7 @@
 
 <div id="all-items">
     {% for item in uploads %}
-    <div class="term" id="{{ item.display_datetime[1] }}">
+    <div class="term" onclick="location.href='/post/{{ item.name }}'" style="cursor:pointer" id="{{ item.display_datetime[1] }}">
         {% if item.pin %}
         <span class="pin-icon" title="Pinned"><img style="height:2em" src="/static/images/pin.gif"></span>
         {% endif %}
@@ -48,7 +48,8 @@
             </a>
         </div>
         {% if item.description %}
-        <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre>
+        <pre class="description" style="white-space: pre-line;">{{ item.description|striptags|truncate(300, True, '...') }}</pre>
+        <!-- <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre> -->
         <!-- <p style="white-space: pre-line;">{{ item.description|safe }}</p> -->
         {% endif %}
     </div>

@@ -1,47 +1,73 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}Post{% endblock %}
-
 {% block body %}
-<div id="all-items">
+<style>
+.post-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
 
-    <div class="term" id="{{ item.display_datetime[1] }}">
-        {% if item.pin %}
-        <span class="pin-icon">
-            <img style="height:2em" src="/static/images/pin.gif">
-        </span>
-        {% endif %}
+.post-glass {
+    max-width: 80%;
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 40px;
+}
 
-        <div class="meta">
-            <span class="user">{{ user }}</span> |
-            <span class="display-datetime">{{ item.display_datetime[0] }}</span> |
-            <a class="url" href="/">[back]</a>
+.post-hero img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 30px auto;
+}
+
+.post-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.post-meta {
+    color: #aaa;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.post-description {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+</style>
+<div class="post-wrapper">
+
+    <div class="post-glass">
+
+        <!-- Hero Image -->
+        <div class="post-hero">
+            <img src="{{ url_for('proxy_image', image_path=item.path) }}">
         </div>
 
-        <span>
-            file:
-            <a class="url" href="{{ url_for('proxy_image', image_path=item.path) }}" target="_blank">
-                {{ item.name }}
-            </a>
+        <!-- Content -->
+        <div class="post-content">
 
-            {% if session.get('logged_in') %}
-            &nbsp;
-            <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
-            &nbsp;
-            <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
-            {% endif %}
-        </span>
+            <div class="post-meta">
+                {{ user }} · {{ item.display_datetime[0] }}
+            </div>
 
-        <div class="media">
-            <a href="{{ url_for('proxy_image', image_path=item.path) }}">
-                <img src="{{ url_for('proxy_image', image_path=item.path) }}">
-            </a>
+            <div class="post-description">
+                {{ item.description|safe }}
+            </div>
+
         </div>
-
-        {% if item.description %}
-        <pre class="description" style="white-space: pre-line;">{{ item.description|safe }}</pre>
-        {% endif %}
 
     </div>
 
 </div>
+
 {% endblock %}

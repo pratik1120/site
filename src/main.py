@@ -160,8 +160,9 @@ def pin(title):
 
 # -------- IMAGE PROXY -------- #
 
-@app.route("/images/<path:image_path>")
+@app.route("/images/<image_path>")
 def proxy_image(image_path):
+    image_path = image_path.split("/")[1]
     # headers = {
     #     "Authorization": f"token {app.config['GITHUB_TOKEN']}",
     #     "Accept": "application/vnd.github.v3.raw"
@@ -174,7 +175,7 @@ def proxy_image(image_path):
     #     branch=app.config['GITHUB_REPO_BRANCH']
     # )
     
-    url = f"https://raw.githubusercontent.com/{app.config['GITHUB_USERNAME']}/{app.config['GITHUB_REPO']}/{app.config['GITHUB_REPO_BRANCH']}/{image_path}"
+    url = f"https://raw.githubusercontent.com/{app.config['GITHUB_USERNAME']}/{app.config['GITHUB_REPO']}/{app.config['GITHUB_REPO_BRANCH']}/uploads/{image_path}"
 
     return requests.get(url, headers={})
 

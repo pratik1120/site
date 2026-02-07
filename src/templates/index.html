@@ -23,7 +23,7 @@
 {% if loop.first %}
 
 <div class="term featured"
-     onclick="location.href='/post/{{ item.name }}'"
+     onclick="location.href='/post/{{ item.title|urlencode }}'"
      style="cursor:pointer"
      id="{{ item.display_datetime[1] }}">
 
@@ -63,6 +63,7 @@
     </div>
 
     <pre style="white-space: pre-wrap;" class="description">
+<h2>{{ item.title }}</h2>
 {{ item.description|striptags|truncate(250, True, '...') }}
     </pre>
 
@@ -76,12 +77,12 @@
     <!-- THUMB POSTS -->
 
     <div class="thumb-post"
-         onclick="location.href='/post/{{ item.name }}'">
+         onclick="location.href='/post/{{ item.title|urlencode }}'">
 
         <img src="{{ url_for('proxy_image', image_path=item.path) }}">
 
         <div class="thumb-overlay">
-            {{ item.description|striptags|truncate(100, True, '...') }}
+            <b>{{ item.title }}</b><br>{{ item.description|striptags|truncate(50, True, '...') }}
         </div>
 
     </div>

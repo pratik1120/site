@@ -3,6 +3,7 @@ import mimetypes
 import traceback
 from .modules import utils
 from datetime import datetime
+from urllib.parse import unquote
 from flask import Flask, render_template, redirect, request, flash, url_for, session, Response, abort, jsonify
 
 
@@ -27,9 +28,13 @@ def index():
 def new():
     if request.method == "POST":
         file = request.files.get("file")
+        title = request.form.get("title","").strip()
         desc = request.form.get("description", "")
         date_str = request.form.get("date")
         utils.print_debug(date_str)
+        if not title:
+            flash("Title required", "error")
+            return redirect(request.url)
         if date_str:
             display_datetime_ts = int(datetime.strptime(date_str, "%Y-%m-%dT%H:%M").timestamp())
         else:
@@ -43,6 +48,7 @@ def new():
             flash("File uploaded successfully!", "success")
             all_images = utils.get_data()
             entry = {
+                "title": title,
                 "name": result['name'],
                 "path": result['path'],
                 "url": result['url'],
@@ -198,15 +204,18 @@ def logout():
     flash("Logged out.", category='error')
     return redirect(url_for('index'))
 
-@app.route("/post/<filename>")
-def post(filename):
+
+@app.route("/post/<title>")
+def post(title):
+    title = unquote(title)
     data = utils.get_data()
     for item in data:
-        if item["name"] == filename:
+        if item.get("title") == title or item["name"] == title:
             return render_template(
                 "post.html",
                 item=item,
                 user=app.config['DISPLAY_NAME']
             )
     abort(404)
+
 

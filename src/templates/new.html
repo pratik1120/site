@@ -7,10 +7,12 @@
 {% block body %}
 <div class="term">
     <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required placeholder="Post title...">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" required rows="15" placeholder="Content..."></textarea>
         <label for="file">Select Image</label>
         <input type="file" id="file" name="file" accept="image/*" required>
-        <label for="description">Description</label>
-        <textarea id="description" name="description" rows="7" placeholder="Enter description (optional)..."></textarea>
         <label for="date">Date <small>(UTC by default)</small></label>
         <input type="datetime-local" id="date" name="date" value="{{ today }}" step="60">
         <p>

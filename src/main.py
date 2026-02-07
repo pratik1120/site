@@ -160,7 +160,7 @@ def pin(title):
 
 # -------- IMAGE PROXY -------- #
 
-@app.route("/images/<image_path>")
+@app.route("/images/<path:image_path>")
 def proxy_image(image_path):
     # headers = {
     #     "Authorization": f"token {app.config['GITHUB_TOKEN']}",

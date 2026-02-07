@@ -89,7 +89,7 @@
         <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
         </a>
         {%else%}
-        <b>{{ item.title }}</b>
+        {% if item.pin %}📌{% endif %}<b>{{ item.title }}</b>
         {% endif %}
         </div>
 

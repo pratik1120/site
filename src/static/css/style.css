@@ -430,3 +430,6 @@ nav ul li a:hover {
         height:120px;
     }
 }
+#thumbMenu:hover{
+    background:#222;
+}

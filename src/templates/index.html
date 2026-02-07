@@ -77,12 +77,11 @@
     <!-- THUMB POSTS -->
 
     <div class="thumb-post"
-         onclick="location.href='/post/{{ item.title|urlencode }}'">
-
+    data-filename="{{ item.name }}"
+    onclick="location.href='/post/{{ item.title|urlencode }}'">
         <img src="{{ url_for('proxy_image', image_path=item.path) }}">
-
         <div class="thumb-overlay">
-            <b>{{ item.title }}</b><br>{{ item.description|striptags|truncate(50, True, '...') }}
+            <b>{{ item.title }}</b>
         </div>
 
     </div>
@@ -112,5 +111,47 @@
     </div>
 </div>
 
+<div id="thumbMenu" style="
+display:none;
+position:fixed;
+background:#000000dd;
+border:1px solid #555;
+padding:6px 10px;
+z-index:9999;
+font-size:13px;
+cursor:pointer;">
+Pin / Unpin
+</div>
+<script>
+const menu = document.getElementById("thumbMenu");
+let currentThumb = null;
+
+document.querySelectorAll(".thumb-post").forEach(t => {
+    t.addEventListener("contextmenu", e => {
+        e.preventDefault();
+        currentThumb = t;
+
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px";
+        menu.style.display = "block";
+    });
+});
+
+document.addEventListener("click", () => {
+    menu.style.display = "none";
+});
+
+menu.addEventListener("click", () => {
+    if(!currentThumb) return;
+
+    const filename = currentThumb.dataset.filename;
+
+    fetch(`/pin/${filename}`, {method:"POST"})
+        .then(r=>r.json())
+        .then(()=>{
+            location.reload();
+        });
+});
+</script>
 
 {% endblock %}

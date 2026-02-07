@@ -63,7 +63,7 @@
     </div>
 
     <pre style="white-space: pre-wrap;" class="description">
-<h2>{{ item.title }}</h2>
+<h2 onclick="location.href='/post/{{ item.title|urlencode }}'"><u>{{ item.title }}</u></h2>
 {{ item.description|striptags|truncate(250, True, '...') }}
     </pre>
 
@@ -77,19 +77,18 @@
     <!-- THUMB POSTS -->
 
     <div class="thumb-post"
-    data-filename="{{ item.name }}"
-    onclick="location.href='/post/{{ item.title|urlencode }}'">
+    data-filename="{{ item.name }}">
         <img src="{{ item.url }}">
         <div class="thumb-overlay">
         {% if session.get('logged_in') %}
         <a href="#" class="delete-link" data-filename="{{ item.name }}">[delete]</a>
         &nbsp;
-        {% if item.pin %}📌{% endif %}<b>{{ item.title }}</b>
+        {% if item.pin %}📌{% endif %}<b onclick="location.href='/post/{{ item.title|urlencode }}'">{{ item.title }}</b>
         &nbsp;
         <a href="#" class="edit-link" data-filename="{{ item.name }}">[edit]</a>
         </a>
         {%else%}
-        {% if item.pin %}📌{% endif %}<b>{{ item.title }}</b>
+        {% if item.pin %}📌{% endif %}<b onclick="location.href='/post/{{ item.title|urlencode }}'">{{ item.title }}</b>
         {% endif %}
         </div>
 

@@ -38,7 +38,7 @@ class DB:
         else:
             con = self.repo.get_contents(file_path, ref=branch).decoded_content.decode("utf-8")
         if eval_output:
-            return eval(con)
+            return json.loads(con)
         return con
 
     def upload_to_github(self, file_storage, folder="uploads", branch=None):
@@ -87,9 +87,7 @@ def get_db():
 
 def get_data():
     db = get_db()
-    data = db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)
-    data.sort(key=lambda x: x['display_datetime'][1], reverse=True)
-    return data
+    return db.load_remote_data(current_app.config['DATA_FILE'], eval_output=True)
 
 def save_data(data):
     db = get_db()
@@ -100,16 +98,21 @@ def upload_image(file_storage):
     db = get_db()
     return db.upload_to_github(file_storage)
 
-def delete_post(filename):
+def delete_post(identifier):
     db = get_db()
     data = get_data()
-    entry = next((item for item in data if item["name"] == filename), None)
+    entry = next(
+        (item for item in data if item.get("title") == identifier or item["name"] == identifier),
+        None
+    )
     if not entry:
-        raise ValueError(f"File {filename} not found in data")
+        raise ValueError(f"Post {identifier} not found")
+    filename = entry["name"]
     db.delete_from_github(filename, folder="uploads")
     data = [item for item in data if item["name"] != filename]
     save_data(data)
     return True
+
 
 def login_required(f):
     @wraps(f)

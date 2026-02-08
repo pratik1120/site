@@ -12,5 +12,6 @@ GITHUB_EMAIL = os.getenv("GITHUB_EMAIL")
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_API_URL = "https://api.github.com/repos/{owner}/{repo}/contents/{path}?ref={branch}"
+DISPLAY_NAME = "AADHI"
 
 DISPLAY_NAME = os.getenv("DISPLAY_NAME") or USERNAME

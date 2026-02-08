@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tracks = [
         { title: "Mulholland Drive OST", src: "/static/music/Mulholland_Drive_OST_(mp3.pm).mp3" },
-        { title: "Track Two", src: "/static/music/track2.mp3" }
+        { title: "Ballance Final Music", src: "/static/music/Ballance_music_final.mp3"}
+        { title: "Lorn's Lure Lost Light", src: "/static/music/Lorn's _Lure_Lost_Light.mp3"}
     ];
 
     let currentTrack = 0;

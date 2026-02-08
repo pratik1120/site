@@ -2,14 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tracks = [
         { title: "Mulholland Drive OST", src: "/static/music/Mulholland_Drive_OST_(mp3.pm).mp3" },
-        { title: "Track Two", src: "/static/music/track2.mp3" },
-        { title: "Track Three", src: "/static/music/track3.mp3" },
-        { title: "Track Four", src: "/static/music/track4.mp3" },
-        { title: "Track Five", src: "/static/music/track5.mp3" }
+        { title: "Track Two", src: "/static/music/track2.mp3" }
     ];
 
     let currentTrack = 0;
-    let isPlaying = true;
+    let isPlaying = false;
     let isLooping = false;
 
     const audio = document.getElementById("audio");
@@ -55,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isLooping) nextTrack();
     });
 
-    // expose to HTML buttons
+    // 🔴 THIS IS THE MISSING PIECE
     window.togglePlay = togglePlay;
     window.nextTrack = nextTrack;
     window.prevTrack = prevTrack;

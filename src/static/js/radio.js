@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let currentTrack = 0;
-    let isPlaying = false;
+    let isPlaying = true;
     let isLooping = false;
 
     const audio = document.getElementById("audio");

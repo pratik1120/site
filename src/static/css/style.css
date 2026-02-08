@@ -389,7 +389,6 @@ nav ul li a:hover {
     height: 160px;
     overflow: hidden;
     border: 1px solid #333;
-    cursor: pointer;
     background: #000;
 }
 
@@ -432,4 +431,12 @@ nav ul li a:hover {
 }
 #thumbMenu:hover{
     background:#222;
+}
+
+#maintitle{
+  cursor: pointer;
+  color:#5dffb3
+}
+#maintitle:hover{
+  color:#3d3aff;
 }

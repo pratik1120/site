@@ -23,7 +23,6 @@
 {% if loop.first %}
 
 <div class="term featured"
-     style="cursor:pointer"
      id="{{ item.display_datetime[1] }}">
 
     {% if item.pin %}
@@ -62,7 +61,7 @@
     </div>
 
     <pre style="white-space: pre-wrap;" class="description">
-<h2 onclick="location.href='/post/{{ item.title|urlencode }}'"><u>{{ item.title }}</u></h2>
+<h2 id='maintitle' style="cursor:pointer;" onclick="location.href='/post/{{ item.title|urlencode }}'">{{ item.title }}</h2>
 {{ item.description|striptags|truncate(250, True, '...') }}
     </pre>
 

@@ -1,6 +1,6 @@
 
 const tracks = [
-    { title: "Track One", src: "pratik1120/site/src/static/music/Mulholland_Drive_OST_(mp3.pm).mp3" },
+    { title: "Track One", src: "/src/static/music/Mulholland_Drive_OST_(mp3.pm).mp3" },
     { title: "Track Two", src: "/static/music/track2.mp3" },
     { title: "Track Three", src: "/static/music/track3.mp3" },
     { title: "Track Four", src: "/static/music/track4.mp3" },

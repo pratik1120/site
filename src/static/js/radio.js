@@ -79,23 +79,61 @@ let isDragging = false;
 let offsetX = 0;
 let offsetY = 0;
 
-radio.addEventListener("mousedown", (e) => {
+function startDrag(x, y) {
     isDragging = true;
     radio.style.animation = "none";
 
     const rect = radio.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
+    offsetX = x - rect.left;
+    offsetY = y - rect.top;
+}
+
+function dragMove(x, y) {
+    if (!isDragging) return;
+
+    radio.style.left = `${x - offsetX}px`;
+    radio.style.top = `${y - offsetY}px`;
+    radio.style.transform = "none";
+}
+
+function endDrag() {
+    isDragging = false;
+
+    localStorage.setItem("radioPos", JSON.stringify({
+        x: radio.style.left,
+        y: radio.style.top
+    }));
+}
+
+/* ===== MOUSE ===== */
+radio.addEventListener("mousedown", (e) => {
+    startDrag(e.clientX, e.clientY);
 });
 
 document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
+    dragMove(e.clientX, e.clientY);
+});
 
-    radio.style.left = `${e.clientX - offsetX}px`;
-    radio.style.top = `${e.clientY - offsetY}px`;
+document.addEventListener("mouseup", endDrag);
+
+/* ===== TOUCH ===== */
+radio.addEventListener("touchstart", (e) => {
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+}, { passive: false });
+
+document.addEventListener("touchmove", (e) => {
+    const t = e.touches[0];
+    dragMove(t.clientX, t.clientY);
+}, { passive: false });
+
+document.addEventListener("touchend", endDrag);
+
+/* ===== RESTORE POSITION ===== */
+const savedPos = localStorage.getItem("radioPos");
+if (savedPos) {
+    const { x, y } = JSON.parse(savedPos);
+    radio.style.left = x;
+    radio.style.top = y;
     radio.style.transform = "none";
-});
-
-document.addEventListener("mouseup", () => {
-    isDragging = false;
-});
+}

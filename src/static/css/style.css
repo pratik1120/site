@@ -384,7 +384,9 @@ nav ul li a:hover {
 #radio-float:active {
     cursor: grabbing;
     animation: none;
+    touch-action: none;
 }
+
 
 @keyframes idleFloat {
     0%   { transform: translate(-50%, 0px); }
@@ -418,6 +420,7 @@ nav ul li a:hover {
 .radio-controls button:hover {
     opacity: 1;
 }
+
 
 
 

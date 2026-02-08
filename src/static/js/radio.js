@@ -1,3 +1,4 @@
+console.log("radio.js loaded")
 document.addEventListener("DOMContentLoaded", () => {
 
     const tracks = [

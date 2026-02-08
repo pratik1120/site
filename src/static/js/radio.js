@@ -72,3 +72,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadTrack(currentTrack);
 });
+
+const radio = document.getElementById("radio-float");
+
+let isDragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+radio.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    radio.style.animation = "none";
+
+    const rect = radio.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    radio.style.left = `${e.clientX - offsetX}px`;
+    radio.style.top = `${e.clientY - offsetY}px`;
+    radio.style.transform = "none";
+});
+
+document.addEventListener("mouseup", () => {
+    isDragging = false;
+});

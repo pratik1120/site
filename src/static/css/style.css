@@ -362,16 +362,34 @@ nav ul li a:hover {
   }
 }
 
-.radio-player {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 999;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(12px);
+#radio-float {
+    position: absolute;
+    top: 40vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(14px);
     border: 1px solid rgba(255,255,255,0.15);
-    padding: 10px 14px;
+    padding: 12px 16px;
     border-radius: 6px;
+
+    cursor: grab;
+    z-index: 100;
+    user-select: none;
+
+    animation: idleFloat 6s ease-in-out infinite;
+}
+
+#radio-float:active {
+    cursor: grabbing;
+    animation: none;
+}
+
+@keyframes idleFloat {
+    0%   { transform: translate(-50%, 0px); }
+    50%  { transform: translate(-50%, -6px); }
+    100% { transform: translate(-50%, 0px); }
 }
 
 

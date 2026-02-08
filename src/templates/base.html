@@ -55,5 +55,18 @@
     </footer>
 
     <script src="/static/js/script.js"></script>
+    <div class="radio-player">
+    <div class="radio-track" id="radio-track">—</div>
+
+    <div class="radio-controls">
+        <button onclick="prevTrack()">⟲</button>
+        <button onclick="togglePlay()" id="playBtn">▶</button>
+        <button onclick="nextTrack()">⟳</button>
+        <button onclick="toggleLoop()" id="loopBtn">⟲⟲</button>
+    </div>
+
+    <audio id="audio"></audio>
+</div>
+
 </body>
 </html>

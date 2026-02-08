@@ -362,6 +362,48 @@ nav ul li a:hover {
   }
 }
 
+.radio-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: #fff;
+    font-size: 13px;
+    z-index: 9999;
+    width: 220px;
+}
+
+.radio-track {
+    margin-bottom: 8px;
+    opacity: 0.85;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.radio-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-controls button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.radio-controls button:hover {
+    opacity: 1;
+}
+
+
 
 /* =========================
    Featured + Thumbnails

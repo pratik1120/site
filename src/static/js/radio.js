@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "Lorn’s Lure – Lost Light",
-            src: "/static/music/Lorns_Lure_Lost_Light.mp3"
+            src: "/static/music/Lorn's_Lure_Lost_Light.mp3"
         }
     ];
 

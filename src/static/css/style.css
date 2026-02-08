@@ -317,13 +317,58 @@ footer a:hover {
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(255,47,220,0.9);
 }
-
-nav {
-  text-align: center;
-  padding: 8px;
-  font-size: 1rem;
-  margin-top: 20px;
+.layout {
+    display: flex;
+    min-height: 100vh;
 }
+
+.sidebar {
+    width: 220px;
+    flex-shrink: 0;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(18px);
+    border-right: 1px solid rgba(255,255,255,0.1);
+
+    padding: 40px 24px;
+    box-sizing: border-box;
+
+    z-index: 90;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.sidebar ul li {
+    display: block;
+}
+
+.sidebar ul li a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.6px;
+
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.sidebar ul li a:hover {
+    color: var(--neon-cyan);
+    transform: translateX(4px);
+}
+
 
 nav ul {
   list-style-type: none;

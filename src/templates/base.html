@@ -17,7 +17,9 @@
     {% block scripts %}{% endblock %}
 </head>
 <body>
-    <nav>
+    <div class="layout">
+
+    <nav class="sidebar">
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
@@ -28,23 +30,13 @@
             {% endif %}
         </ul>
     </nav>
-    
-    <div id="flash-container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <div class="flash-wrap">
-        {% for category, msg in messages %}
-            <div class="flash {{ category }}">{{ msg }}</div>
-        {% endfor %}
-        </div>
-        {% endif %}
-        {% endwith %}
-    </div>
-    
-    <main>
-    {% block body %}
-    {% endblock %}
+
+    <main class="content">
+        {% block body %}{% endblock %}
     </main>
+
+</div>
+
     
     <footer class="footer">
         <span><a target="_blank" href="#">Other</a></span>

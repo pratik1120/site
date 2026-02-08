@@ -44,17 +44,39 @@
     line-height: 1.6;
 }
 
+/* ===== SHARE BUTTON STYLES (ADDED) ===== */
+.share-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.share-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.share-btn:hover {
+    background: rgba(255,255,255,0.18);
+}
 </style>
+
 <div class="post-wrapper">
 
     <div class="post-glass">
 
         <h1 class="post-title" style="text-align:center;">{{ item.title }}</h1>
+
         <div class="post-hero">
             <img src="{{ item.url }}">
         </div>
 
-        <!-- Content -->
         <div class="post-content">
 
             <div class="post-meta">
@@ -65,10 +87,35 @@
                 {{ item.description|safe }}
             </div>
 
+            <!-- ===== SHARE BUTTON (ADDED) ===== -->
+            <div class="share-wrapper">
+                <button class="share-btn" onclick="sharePost()">
+                    Share
+                </button>
+            </div>
+
         </div>
 
     </div>
 
 </div>
+
+<!-- ===== SHARE LOGIC (ADDED) ===== -->
+<script>
+function sharePost() {
+    const shareData = {
+        title: "{{ item.title }}",
+        text: "Check out this post:",
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData);
+    } else {
+        navigator.clipboard.writeText(shareData.url);
+        alert("Link copied to clipboard");
+    }
+}
+</script>
 
 {% endblock %}

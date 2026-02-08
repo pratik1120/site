@@ -1,10 +1,20 @@
-console.log("radio.js loaded")
+console.log("radio.js loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const tracks = [
-        { title: "Mulholland Drive OST", src: "/static/music/Mulholland_Drive_OST_(mp3.pm).mp3" },
-        { title: "Ballance Final Music", src: "/static/music/Ballance_music_final.mp3"}
-        { title: "Lorn's Lure Lost Light", src: "/static/music/Lorn's _Lure_Lost_Light.mp3"}
+        {
+            title: "Mulholland Drive OST",
+            src: "/static/music/Mulholland_Drive_OST_(mp3.pm).mp3"
+        },
+        {
+            title: "Ballance Final Music",
+            src: "/static/music/Ballance_music_final.mp3"
+        },
+        {
+            title: "Lorn’s Lure – Lost Light",
+            src: "/static/music/Lorns_Lure_Lost_Light.mp3"
+        }
     ];
 
     let currentTrack = 0;
@@ -54,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isLooping) nextTrack();
     });
 
-    // 🔴 THIS IS THE MISSING PIECE
+    // expose globally for inline onclick
     window.togglePlay = togglePlay;
     window.nextTrack = nextTrack;
     window.prevTrack = prevTrack;

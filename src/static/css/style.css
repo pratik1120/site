@@ -323,23 +323,26 @@ footer a:hover {
 }
 
 .sidebar {
-    width: 220px;
+    width: 72px;                 /* thin */
     flex-shrink: 0;
+    text-align: center;
+    margin-top: 0;
 
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
 
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(18px);
-    border-right: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(14px);
+    border-right: 1px solid rgba(255,255,255,0.08);
 
-    padding: 40px 24px;
+    padding: 30px 10px;
     box-sizing: border-box;
 
     z-index: 90;
 }
+
 
 .sidebar ul {
     list-style: none;
@@ -348,7 +351,8 @@ footer a:hover {
 
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
+    align-items: center;
 }
 
 .sidebar ul li {
@@ -356,18 +360,21 @@ footer a:hover {
 }
 
 .sidebar ul li a {
-    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.8px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
 
-    transition: color 0.25s ease, transform 0.25s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .sidebar ul li a:hover {
     color: var(--neon-cyan);
-    transform: translateX(4px);
+    transform: translateY(-4px);
 }
+
 
 
 nav ul {
@@ -400,11 +407,21 @@ nav ul li a:hover {
 }
 
 /* Mobile-specific adjustments */
-@media (max-width: 600px) {
-  nav ul li {
-    display: block;
-    margin: 4px 0;
-  }
+@media (max-width: 700px) {
+    .sidebar {
+        width: 56px;
+        padding: 20px 6px;
+    }
+
+    .content {
+        margin-left: 56px;
+        width: calc(100% - 56px);
+    }
+
+    .sidebar ul li a {
+        writing-mode: horizontal-tb;
+        font-size: 12px;
+    }
 }
 
 #radio-float {

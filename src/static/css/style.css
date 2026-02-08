@@ -375,6 +375,13 @@ footer a:hover {
     transform: translateY(-4px);
 }
 
+main {
+    margin-left: 72px;                  /* same as sidebar width */
+    width: calc(100% - 72px);
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
 
 
 nav ul {
@@ -383,10 +390,6 @@ nav ul {
   margin: 0;
 }
 
-nav ul li {
-  display: inline;
-  margin: 0 8px;
-}
 
 nav ul li a {
   color: #9aa0ff;

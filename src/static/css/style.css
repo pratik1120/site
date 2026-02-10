@@ -566,3 +566,17 @@ nav ul li a:hover {
 #maintitle:hover{
   color:#3d3aff;
 }
+
+.read-more {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--neon-cyan);
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+.read-more:hover {
+    opacity: 1;
+    text-decoration: underline;
+}

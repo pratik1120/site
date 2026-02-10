@@ -61,9 +61,19 @@
     </div>
 
     <pre style="white-space: pre-wrap;" class="description">
-<h2 id='maintitle' style="cursor:pointer;" onclick="location.href='/post/{{ item.title|urlencode }}'">{{ item.title }}</h2>
-{{ item.description|striptags|truncate(250, True, '...') }}
+    <h2 id="maintitle"
+        onclick="location.href='/post/{{ item.title|urlencode }}'">
+        {{ item.title }}
+    </h2>
+
+    {{ item.description|striptags|truncate(250, True, '...') }}
+
+    <a class="read-more"
+        href="/post/{{ item.title|urlencode }}">
+        Read more →
+    </a>
     </pre>
+
 
 </div>
 
